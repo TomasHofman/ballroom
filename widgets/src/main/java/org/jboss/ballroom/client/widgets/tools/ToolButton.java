@@ -31,6 +31,8 @@ public class ToolButton extends Button implements OperationAddressAware {
 
     private String resource;
     private String op;
+    private boolean enabled = true;
+    private boolean permitted = true;
 
     public ToolButton(String title) {
         super(title);
@@ -59,6 +61,26 @@ public class ToolButton extends Button implements OperationAddressAware {
     @Override
     public boolean hasOperationAddress() {
         return resource!=null && op!=null;
+    }
+
+    public void setPermitted(boolean permitted) {
+        setEnabled(isEnabled(), permitted);
+    }
+
+    @Override
+    public boolean isPermitted() {
+        return permitted;
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        setEnabled(enabled, permitted);
+    }
+
+    private void setEnabled(boolean enabled, boolean permitted) {
+        this.enabled = enabled;
+        this.permitted = permitted;
+        super.setEnabled(enabled && permitted);
     }
 }
 

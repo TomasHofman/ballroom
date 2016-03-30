@@ -162,9 +162,10 @@ public class ToolStrip extends HorizontalPanel implements SecurityContextAware {
                     granted = overallPrivilege; // coarse grained, inherited from parent
                 }
 
+                btn.setPermitted(granted);
+
                 if (update) {
                     btn.setVisible(true);
-                    btn.setEnabled(granted);
                     visibleButtons++;
                 } else {
                     btn.setVisible(granted);

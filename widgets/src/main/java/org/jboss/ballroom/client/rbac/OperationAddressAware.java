@@ -27,7 +27,7 @@ import com.google.gwt.user.client.ui.HasVisibility;
 /**
  * @author Harald Pehl
  */
-public interface OperationAddressAware extends HasEnabled, HasVisibility {
+public interface OperationAddressAware extends HasEnabled, HasVisibility, HasPermitted {
     void setOperationAddress(String resource, String op);
 
     String[] getOperationAddress();

@@ -32,6 +32,8 @@ public class ToolButtonDropdown extends ButtonDropdown implements OperationAddre
 
     private String resource;
     private String op;
+    private boolean appEnabled = true;
+    private boolean permitted = true;
 
     public ToolButtonDropdown(String text) {
         super(text);
@@ -55,5 +57,25 @@ public class ToolButtonDropdown extends ButtonDropdown implements OperationAddre
     @Override
     public boolean hasOperationAddress() {
         return resource!=null && op!=null;
+    }
+
+    public void setPermitted(boolean rbacEnabled) {
+        setEnabled(isEnabled(), rbacEnabled);
+    }
+
+    @Override
+    public boolean isPermitted() {
+        return permitted;
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        setEnabled(enabled, permitted);
+    }
+
+    private void setEnabled(boolean appEnabled, boolean rbacEnabled) {
+        this.appEnabled = appEnabled;
+        this.permitted = rbacEnabled;
+        super.setEnabled(appEnabled && rbacEnabled);
     }
 }
